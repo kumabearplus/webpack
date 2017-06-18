@@ -14,11 +14,11 @@
     "svg": "node build/svg-symbols.js"
   },
   "dependencies": {
-    "leancloud-storage": "^2.5.0",
+    "leancloud-storage": "^3.0.0",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
     "object-path": "^0.11.4",
-    "sass-loader": "^6.0.5",
+    "sass-loader": "^6.0.6",
     "vue": "^2.3.3",
     "vue-router": "^2.3.1",
     "vuex": "^2.3.1"

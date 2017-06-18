@@ -64,17 +64,19 @@
   </div>
 </template>
 
-<script>
+<script type="text/javascript">
   export default {
     name: 'ResumePreview',
     computed: {
-      resume () {
+      resume(){
         return this.$store.state.resume
       }
+    },
+    createt(){
+      console.log(this.resume)
     }
   }
 </script>
-
 
 <style lang="scss">
   #resumePreview { 
