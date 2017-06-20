@@ -30,7 +30,6 @@
     align-items: center;
   }
   .dialog{
-    background: white;
     > main{
       padding: 16px;
       max-width: 600px;

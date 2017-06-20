@@ -1,32 +1,36 @@
 <template>
 
 <div id="signInAndSignUp">
-  <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+  <MyDialog :visible="signUpDialogVisible">
     <div class="ct">
-      <div>
+      <div class="tab">
         <label><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
         <label><input type="radio" name="type" value="signIn" v-model="actionType">登入</label>
       </div>
       <div class="signUp" v-if="actionType == 'signUp'">
         <form @submit.prevent=signUp>
           <div class="formRow">
-            用户名: <input type="text" v-model="formData.username" placeholder="请输入用户名">
+            <label>用户名:</label>
+            <input type="text" v-model="formData.username" placeholder="请输入用户名">
           </div>
           <div class="formRow">
-            密&nbsp&nbsp码: <input type="password" v-model="formData.password" placeholder="请输入密码">
+            <label>密 &nbsp码:</label>
+            <input type="password" v-model="formData.password" placeholder="请输入密码">
           </div>
-          <div class="formActions">
-            <input type="submit" value="注册">
+          <div class="formActions" @click="isValidUsername">
+            <input type="submit" value="注册" @click="isValidPassword">
           </div>
         </form>
       </div>
       <div class="signIn" v-if="actionType == 'signIn'">
         <form @submit.prevent=signIn>
           <div class="formRow">
-            用户名: <input type="text" v-model="formData.username" placeholder="请输入用户名">
+            <label>用户名:</label>
+            <input type="text" v-model="formData.username" placeholder="请输入用户名">
           </div>
           <div class="formRow">
-            密&nbsp&nbsp码: <input type="password" v-model="formData.password" placeholder="请输入用户名">
+            <label>密 &nbsp码:</label>
+            <input type="password" v-model="formData.password" placeholder="请输入密码">
           </div>
           <div class="formActions">
             <input type="submit" value="登入">
@@ -192,6 +196,34 @@ export default {
       // this.saveOrUpdateTodos()
        
     },
+    isValidUsername: function (){
+      var reg = /^\w{6,20}$/
+      var str = this.formData.username
+      if (reg.test(str)) {
+        console.log('输入的用户名正确')
+
+      } else {
+        // this.formData.username = '请输入正确的用户名'
+        this.formData.username = ''
+        console.log('请输入正确的用户名') 
+      }
+    },
+    isValidPassword: function(){
+      var reg = /^\w{6,20}$/
+      var str = this.formData.password
+      if (reg.test(str)) {
+        if ((/^[a-z]{6,20}$/).test(str)||(/^[A-Z]{6,20}$/).test(str)||(/^[0-9]{6,20}$/).test(str)||(/^-{6,20}$/).test(str)) {
+          console.log('请重新输入密码')  //{6,20}不能少
+          // this.formData.password = '请重新输入密码'
+          this.formData.password = ''
+        } else {
+          console.log('输入的密码正确') 
+        }
+      }
+      console.log('请重新输入密码') 
+      // this.formData.password = '请重新输入密码'
+      this.formData.password = ''
+    },
     removeTodo: function(todo){
       let index = this.todoList.indexOf(todo) // Array.prototype.indexOf 是 ES 5 新加的 API
       this.todoList.splice(index,1) // 不懂 splice？赶紧看 MDN 文档！
@@ -243,29 +275,69 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
   .ct {
-    background-color: #fff;
-    width: 250px;
-    height: 160px;
+    width: 300px;
+    min-height: 260px;
     margin: 0 auto;
+
+    .tab {
+      display: flex;   
+      >label {
+        flex-grow: 1;
+        display: flex;
+        height: 40px;
+        align-items: center;
+        font-size: 16px;
+        justify-content: center;
+        cursor: pointer;
+        border-bottom: 2px solid #fff;
+        &:hover {
+          border-bottom: 2px solid #0f0;
+          background: pink;
+        }
+        &.active {
+          border-bottom: 2px solid #0f0;
+        }
+        >input {
+          visibility: hidden;
+        }
+      }
+    }
   }
-  .ct label {
-    display: inline-block;
-    width: 47%;
-    padding: 0px 23px;
-  }
+
   .formRow {
     padding: 10px 0px;
+    display: flex;
+    >label {
+      flex-grow: 2;
+      height: 40px;
+      padding: 5px;
+    }
+    >input {
+      flex-grow: 8; 
+      height: 30px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background: rgba(0,0,0,0); 
+      &:focus {
+        background: #fff;
+      }
+    }
   }
   .formActions {
     text-align: center;
+    >input {
+      display: inline-block;
+      width: 200px;
+      height: 30px;
+      background-color: rgba(0,0,0,0);
+      border-radius: 50px;
+      border: 1px solid #fff;
+      &:hover {
+        background-color: rgba(180,0,180,0.5);
+      }
+    }
   }
-  .formActions>input {
-    display: inline-block;
-    width: 200px;
-    height: 30px;
-    background-color: pink;
-    border-radius: 5px;
-  }
+    
 </style>
