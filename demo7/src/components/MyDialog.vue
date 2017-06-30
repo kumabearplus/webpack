@@ -19,7 +19,7 @@
 <style scoped lang="scss">
   .dialogWrapper{
     position: fixed;
-    background: hsla(0, 0%,0%,0.25);
+    background: linear-gradient(to left, #50a3a2 0%, #53e3a6 100%);
     top: 0;
     left: 0;
     bottom: 0;

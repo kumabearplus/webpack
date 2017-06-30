@@ -85,6 +85,7 @@
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25); 
     padding: 2em;
     color: #333; 
+    margin-left: 16px;
     line-height: 1.2;
     overflow: auto;
     * {

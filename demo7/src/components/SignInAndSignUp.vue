@@ -4,18 +4,18 @@
   <MyDialog :visible="signUpDialogVisible">
     <div class="ct">
       <div class="tab">
-        <label><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
-        <label><input type="radio" name="type" value="signIn" v-model="actionType">登入</label>
+        <label :class="{active: actionType == 'signUp'}"><input type="radio" name="type" value="signUp" v-model="actionType">注册</label>
+        <label :class="{active: actionType == 'signIn'}"><input type="radio" name="type" value="signIn" v-model="actionType">登入</label>
       </div>
       <div class="signUp" v-if="actionType == 'signUp'">
         <form @submit.prevent=signUp>
           <div class="formRow">
             <label>用户名:</label>
-            <input type="text" v-model="formData.username" placeholder="请输入用户名">
+            <input type="text" v-model="formData.username" placeholder="用户名(字母、数字、特殊符号，6—16位)"><span ></span>
           </div>
           <div class="formRow">
             <label>密 &nbsp码:</label>
-            <input type="password" v-model="formData.password" placeholder="请输入密码">
+            <input type="password" v-model="formData.password" placeholder="密码(字母、数字、特殊符号，6—16位，至少2种)">
           </div>
           <div class="formActions" @click="isValidUsername">
             <input type="submit" value="注册" @click="isValidPassword">
@@ -196,6 +196,9 @@ export default {
       // this.saveOrUpdateTodos()
        
     },
+    isActive: function(){
+
+    },
     isValidUsername: function (){
       var reg = /^\w{6,20}$/
       var str = this.formData.username
@@ -219,10 +222,11 @@ export default {
         } else {
           console.log('输入的密码正确') 
         }
-      }
-      console.log('请重新输入密码') 
+      }else{
+        console.log('请重新输入密码') 
       // this.formData.password = '请重新输入密码'
       this.formData.password = ''
+      }
     },
     removeTodo: function(todo){
       let index = this.todoList.indexOf(todo) // Array.prototype.indexOf 是 ES 5 新加的 API
@@ -277,27 +281,29 @@ export default {
 
 <style scoped lang="scss">
   .ct {
-    width: 300px;
+    width: 460px;
     min-height: 260px;
     margin: 0 auto;
+    font-size: 20px;
 
     .tab {
       display: flex;   
       >label {
         flex-grow: 1;
         display: flex;
-        height: 40px;
+        height: 45px;
+        line-height: 45px;
         align-items: center;
-        font-size: 16px;
         justify-content: center;
         cursor: pointer;
         border-bottom: 2px solid #fff;
         &:hover {
-          border-bottom: 2px solid #0f0;
-          background: pink;
+          
         }
         &.active {
           border-bottom: 2px solid #0f0;
+          color: #fff;
+          background: linear-gradient(to left, red 0%, orange 100%);
         }
         >input {
           visibility: hidden;
@@ -310,16 +316,17 @@ export default {
     padding: 10px 0px;
     display: flex;
     >label {
-      flex-grow: 2;
-      height: 40px;
-      padding: 5px;
+      flex-grow: 1;
+      height: 45px;
+      line-height: 45px;
     }
     >input {
-      flex-grow: 8; 
-      height: 30px;
+      flex-grow: 9; 
+      height: 45px;
       border: 1px solid #fff;
       border-radius: 5px;
-      background: rgba(0,0,0,0); 
+      background: rgba(0,0,0,0);
+      font-size: 16px;
       &:focus {
         background: #fff;
       }
@@ -329,13 +336,14 @@ export default {
     text-align: center;
     >input {
       display: inline-block;
-      width: 200px;
-      height: 30px;
+      width: 260px;
+      height: 45px;
       background-color: rgba(0,0,0,0);
       border-radius: 50px;
       border: 1px solid #fff;
       &:hover {
         background-color: rgba(180,0,180,0.5);
+        color: #fff;
       }
     }
   }

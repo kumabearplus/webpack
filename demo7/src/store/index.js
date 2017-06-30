@@ -14,6 +14,10 @@ export default new Vuex.Store({
       id: '',
       username: ''
     },
+    formData: {
+        username: '',
+        password: ''
+    },
     // currentUser: null,
     // actionType: 'signUp',
     resume: {
