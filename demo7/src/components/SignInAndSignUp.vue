@@ -10,11 +10,11 @@
       <div class="signUp" v-if="actionType == 'signUp'">
         <form @submit.prevent=signUp>
           <div class="formRow">
-            <label>用户名:</label>
-            <input type="text" v-model="formData.username" placeholder="用户名(字母、数字、特殊符号，6—16位)"><span ></span>
+            <label>账号:</label>
+            <input type="text" v-model="formData.username" placeholder="账号(字母、数字、特殊符号，6—16位)"><span ></span>
           </div>
           <div class="formRow">
-            <label>密 &nbsp码:</label>
+            <label>密码:</label>
             <input type="password" v-model="formData.password" placeholder="密码(字母、数字、特殊符号，6—16位，至少2种)">
           </div>
           <div class="formActions" @click="isValidUsername">
@@ -25,11 +25,11 @@
       <div class="signIn" v-if="actionType == 'signIn'">
         <form @submit.prevent=signIn>
           <div class="formRow">
-            <label>用户名:</label>
+            <label>账号:</label>
             <input type="text" v-model="formData.username" placeholder="请输入用户名">
           </div>
           <div class="formRow">
-            <label>密 &nbsp码:</label>
+            <label>密码:</label>
             <input type="password" v-model="formData.password" placeholder="请输入密码">
           </div>
           <div class="formActions">

@@ -31,7 +31,7 @@ export default new Vuex.Store({
         { field: 'others', icon: 'add' },
       ],
       profile: {
-        name: '熊凡',
+        name: '熊某某',
         sex: '男',
         birthday: '1993-01-01',
         city: '广州',
