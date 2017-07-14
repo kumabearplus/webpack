@@ -285,8 +285,7 @@ export default {
     min-height: 260px;
     margin: 0 auto;
     font-size: 20px;
-
-    .tab {
+    >.tab {
       display: flex;   
       >label {
         flex-grow: 1;
@@ -303,7 +302,7 @@ export default {
         &.active {
           border-bottom: 2px solid #0f0;
           color: #fff;
-          background: linear-gradient(to left, red 0%, orange 100%);
+          background: linear-gradient(to left, rgba(0, 216, 251, 0.48) 0%, rgba(11, 222, 232, 0.21) 100%);
         }
         >input {
           visibility: hidden;
@@ -324,6 +323,7 @@ export default {
       flex-grow: 9; 
       height: 45px;
       border: 1px solid #fff;
+      padding-left: 10px;
       border-radius: 5px;
       background: rgba(0,0,0,0);
       font-size: 16px;
